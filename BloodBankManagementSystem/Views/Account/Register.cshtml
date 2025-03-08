@@ -1,0 +1,129 @@
+﻿@model BloodBankManagementSystem.Models.User
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<style>
+    /* Register Container with Glassmorphism */
+    .register-container {
+        width: 320px; /* Reduced size */
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        margin-top: 50px;
+        border-radius: 12px;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+        padding: 25px;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+    }
+
+        /* Title */
+        .register-container h2 {
+            color: rgb(0, 67, 67);
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+    /* Input Fields */
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 12px;
+        border-radius: 6px;
+        border: 1px solid rgba(0, 67, 67, 0.4);
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        color: rgb(0, 67, 67);
+        font-size: 14px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .form-control::placeholder {
+            color: rgba(0, 67, 67, 0.6);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border: 1px solid rgba(0, 67, 67, 0.8);
+            box-shadow: 0px 0px 8px rgba(0, 67, 67, 0.5);
+        }
+
+    /* Submit Button */
+    .btn-block {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        background: linear-gradient(90deg, rgb(0, 67, 67), rgb(0, 120, 120));
+        color: white;
+        border: none;
+        border-radius: 6px;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+        .btn-block:hover {
+            background: linear-gradient(90deg, rgb(0, 80, 80), rgb(0, 150, 150));
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 10px rgba(0, 67, 67, 0.3);
+        }
+
+    /* Error Messages */
+    .error-message {
+        color: rgb(0, 67, 67);
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .text-danger {
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    /* Login Page Link */
+    p {
+        margin-top: 12px;
+        font-size: 13px;
+        color: rgb(0, 67, 67);
+    }
+
+        p a {
+            color: rgb(0, 100, 100);
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+            p a:hover {
+                text-decoration: underline;
+            }
+</style>
+
+<div class="register-container">
+    <h2>Register</h2>
+
+    <form method="post" asp-action="Register" asp-controller="Account">
+        <input asp-for="UserName" class="form-control" placeholder="Username" required />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+
+        <input asp-for="Password" class="form-control" type="password" placeholder="Password" required />
+        <span asp-validation-for="Password" class="text-danger"></span>
+
+        <button type="submit" class="btn btn-block">Register</button>
+    </form>
+
+    <p><a href="/Account/Login">Go back to login page!</a></p>
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <p class="error-message">@ViewBag.ErrorMessage</p>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

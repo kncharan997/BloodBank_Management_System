@@ -1,0 +1,77 @@
+﻿@model BloodBankManagementSystem.Models.Hospital
+
+<h2 class="page-title">Hospital Details</h2>
+
+<div class="content-box">
+    <h3 class="hospital-name">@Model.Name</h3>
+    <p><strong>City:</strong> @Model.City</p>
+    <p><strong>Contact:</strong> @Model.Contact</p>
+    <p><strong>Address:</strong> @Model.Address</p>
+</div>
+
+<div class="button-group">
+    <a href="@Url.Action("Index")" class="btn back-btn">Back to List</a>
+</div>
+
+<!-- ✅ CSS Styling (Following BloodLink Theme) -->
+<style>
+    /* Page Title */
+    .page-title {
+        text-align: center;
+        color: white;
+        background: #8B0000;
+        padding: 14px;
+        border-radius: 6px;
+        font-size: 1.7rem;
+        font-weight: bold;
+        letter-spacing: 0.8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Main Box */
+    .content-box {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        border-left: 5px solid #8B0000;
+    }
+
+    /* Hospital Name */
+    .hospital-name {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #8B0000;
+        text-align: center;
+    }
+
+    /* Button Group */
+    .button-group {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    /* Back Button (No Green) */
+    .back-btn {
+        background: #333;
+        color: white;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        border: none;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .back-btn:hover {
+            background: #222;
+            transform: scale(1.05);
+        }
+</style>

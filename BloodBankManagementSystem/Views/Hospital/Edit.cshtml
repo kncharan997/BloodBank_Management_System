@@ -1,0 +1,107 @@
+﻿@model BloodBankManagementSystem.Models.Hospital
+
+<h2 class="page-title">Edit Hospital</h2>
+
+<form asp-action="Edit" class="form-container">
+    <input type="hidden" asp-for="HospitalID" />
+
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="City" class="control-label"></label>
+        <input asp-for="City" class="form-control" />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Contact" class="control-label"></label>
+        <input asp-for="Contact" class="form-control" />
+        <span asp-validation-for="Contact" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address" class="control-label"></label>
+        <textarea asp-for="Address" class="form-control"></textarea>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="button-group">
+        <button type="submit" class="btn save-btn">Save</button>
+        <a href="@Url.Action("Index")" class="btn cancel-btn">Cancel</a>
+    </div>
+</form>
+
+<!-- ✅ Styling (BloodLink Theme, No Green) -->
+<style>
+    /* Page Title */
+    .page-title {
+        text-align: center;
+        color: white;
+        background: #8B0000;
+        padding: 14px;
+        border-radius: 6px;
+        font-size: 1.7rem;
+        font-weight: bold;
+        letter-spacing: 0.8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Form Container */
+    .form-container {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        border-left: 5px solid #8B0000;
+    }
+
+    /* Button Group */
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    /* Save Button */
+    .save-btn {
+        background: #8B0000;
+        color: white;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        border: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .save-btn:hover {
+            background: #6e0000;
+            transform: scale(1.05);
+        }
+
+    /* Cancel Button */
+    .cancel-btn {
+        background: #333;
+        color: white;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        border: none;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+    }
+
+        .cancel-btn:hover {
+            background: #222;
+            transform: scale(1.05);
+        }
+</style>

@@ -1,0 +1,98 @@
+﻿@model BloodBankManagementSystem.Models.BloodDonationCamp
+
+<h2 class="page-title">Delete Blood Donation Camp</h2>
+
+<div class="content-box">
+    <p class="confirmation-text">
+        Are you sure you want to delete the blood donation camp:
+        <strong>@Model.CampName</strong>?
+    </p>
+
+    <form method="post" class="btn-group">
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<style>
+    /* Page Title */
+    .page-title {
+        text-align: center;
+        color: white;
+        background: linear-gradient(135deg, #7a0000, #5b0000);
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Main Content Box */
+    .content-box {
+        background-color: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+        margin-top: 25px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        border-left: 5px solid #7a0000;
+        text-align: center;
+    }
+
+    /* Confirmation Text */
+    .confirmation-text {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Button Group */
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 10px 18px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 8px;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+        text-align: center;
+        display: inline-block;
+        cursor: pointer;
+        border: none;
+        box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Danger Button */
+    .btn-danger {
+        background: linear-gradient(135deg, #d9534f, #b52b27);
+        color: white;
+    }
+
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #b52b27, #8b0000);
+            transform: scale(1.05);
+        }
+
+    /* Secondary Button */
+    .btn-secondary {
+        background: linear-gradient(135deg, #7a7a7a, #5a5a5a);
+        color: white;
+    }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #5a5a5a, #3a3a3a);
+            transform: scale(1.05);
+        }
+</style>

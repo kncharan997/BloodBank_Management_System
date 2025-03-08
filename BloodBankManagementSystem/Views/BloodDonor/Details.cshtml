@@ -1,0 +1,82 @@
+﻿@model BloodBankManagementSystem.Models.BloodDonor
+
+<div class="container">
+    <div class="header">
+        <h2>Donor Details</h2>
+    </div>
+
+    <div class="card">
+        <div class="info">
+            <p><strong>Name:</strong> @Model.Name</p>
+            <p><strong>Blood Type:</strong> @Model.BloodType</p>
+            <p><strong>Age:</strong> @Model.Age</p>
+            <p><strong>Contact Number:</strong> @Model.ContactNumber</p>
+            <p><strong>Address:</strong> @Model.Address</p>
+            <p><strong>Total Donations:</strong> @Model.TotalDonations</p>
+            <p><strong>Donated On:</strong> @(Model.LastDonationDate.ToShortDateString() ?? "N/A")</p>
+
+        </div>
+    </div>
+
+    <div class="btn-container">
+        <a href="@Url.Action("Index")" class="btn back-btn">Back to Donors</a>
+    </div>
+</div>
+
+<style>
+
+
+    .container {
+        max-width: 500px;
+        width: 100%;
+    }
+
+    .header {
+        background: darkred;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        border-radius: 10px 10px 0 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .info p {
+        font-size: 1rem;
+        color: #333;
+        padding: 8px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+        .info p:last-child {
+            border-bottom: none;
+        }
+
+    .btn-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .back-btn {
+        background: darkred;
+        color: white;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s ease;
+        display: inline-block;
+    }
+
+        .back-btn:hover {
+            background: #a10000;
+        }
+</style>

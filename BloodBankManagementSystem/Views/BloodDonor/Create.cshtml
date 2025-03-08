@@ -1,0 +1,237 @@
+﻿@model BloodBankManagementSystem.Models.BloodDonor
+
+<h2 class="page-title">Add New Donation</h2>
+
+<div class="content-box">
+    <form method="post">
+        <div class="form-group">
+            <label for="Name">Name</label>
+            <input type="text" class="form-control" id="Name" name="Name" required />
+        </div>
+
+        <div class="form-group">
+            <label for="BloodType">Blood Type</label>
+            <select class="form-control" id="BloodType" name="BloodType" required>
+                <option value="">Select Blood Type</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ContactNumber">Contact Number</label>
+            <input type="text" asp-for="ContactNumber" class="form-control" required />
+            <span asp-validation-for="ContactNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Address">Address</label>
+            <input type="text" class="form-control" id="Address" name="Address" />
+        </div>
+
+        <!-- Fields in a Single Row -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="TotalDonations">No. of Bottles</label>
+                <select id="TotalDonations" class="form-control" name="TotalDonations" required>
+                    <option value="">Select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="HBCount">HB Count</label>
+                <select id="HBCount" class="form-control" name="HBCount" required>
+                    <option value="">Select</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Age">Age</label>
+                <input type="number" id="Age" name="Age" class="form-control" asp-for="Age" required min="18" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Weight">Weight (KG)</label>
+                <input type="number" id="Weight" name="Weight" class="form-control" asp-for="Weight" required min="40" max="100" />
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Do you have any disease?</label>
+            <select id="disease" name="disease" class="form-control" onchange="validateForm()">
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Register Under:</label>
+            <select id="RegisterUnder" class="form-control">
+                <option value="">-- Select --</option>
+                <option value="Hospital">Hospital</option>
+                <option value="BloodDonationCamp">Blood Donation Camp</option>
+            </select>
+        </div>
+
+        <div class="form-group hidden" id="hospitalSelect">
+            <label>Hospital:</label>
+            <select asp-for="HospitalID" class="form-control" asp-items="ViewBag.Hospitals">
+                <option value="">-- Select Hospital --</option>
+            </select>
+        </div>
+
+        <div class="form-group hidden" id="campSelect">
+            <label>Blood Donation Camp:</label>
+            <select asp-for="BloodDonationCampID" class="form-control" asp-items="ViewBag.Camps">
+                <option value="">-- Select Blood Donation Camp --</option>
+            </select>
+        </div>
+
+        <!-- Button Group -->
+        <div class="btn-group">
+            <button type="submit" class="btn btn-submit">
+                <i class="fas fa-check-circle"></i> Add Donor
+            </button>
+            <a href="@Url.Action("Index")" class="btn btn-cancel">
+                <i class="fas fa-times-circle"></i> Cancel
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById("RegisterUnder").addEventListener("change", function () {
+            let selectedValue = this.value;
+            document.getElementById("hospitalSelect").style.display = selectedValue === "Hospital" ? "block" : "none";
+            document.getElementById("campSelect").style.display = selectedValue === "BloodDonationCamp" ? "block" : "none";
+        });
+
+        function validateForm() {
+            var disease = document.getElementById("disease").value;
+            if (disease === "Yes") {
+                alert("You have selected 'Yes' for Disease. Please consult a medical professional before donating.");
+                window.location.href = "/BloodDonor/Index";
+            }
+        }
+    </script>
+}
+
+<style>
+    /* Page Title */
+    .page-title {
+        text-align: center;
+        color: white;
+        background-color: darkred;
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Content Box */
+    .content-box {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        border-left: 5px solid darkred;
+    }
+
+    /* Form Group */
+    .form-group {
+        margin-bottom: 12px;
+    }
+
+        .form-group label {
+            font-weight: 600;
+            color: #444;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease-in-out;
+        }
+
+            .form-group .form-control:focus {
+                border-color: darkred;
+                box-shadow: 0 0 5px rgba(139, 0, 0, 0.3);
+                outline: none;
+            }
+
+    /* Form Row */
+    .form-row {
+        display: flex;
+        gap: 12px;
+    }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+    /* Button Group */
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 12px 18px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 6px;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        border: none;
+    }
+
+    .btn-submit {
+        background-color: darkred;
+        color: white;
+    }
+
+    .btn-cancel {
+        background-color: #6c757d;
+        color: white;
+    }
+</style>

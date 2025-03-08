@@ -1,0 +1,136 @@
+﻿@model BloodBankManagementSystem.Models.BloodDonor
+
+<h2 class="page-title">Edit Donor</h2>
+
+<div class="content-box">
+    <form asp-action="Edit" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="BloodDonorID" />
+
+        <div class="form-group">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="BloodType" class="form-label"></label>
+            <input asp-for="BloodType" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Age" class="form-label"></label>
+            <input type="number" asp-for="Age" class="form-control" required min="18" />
+            <span asp-validation-for="Age" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ContactNumber" class="form-label"></label>
+            <input asp-for="ContactNumber" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Address" class="form-label"></label>
+            <input asp-for="Address" class="form-control" />
+        </div>
+
+        <div class="btn-group">
+            <button type="submit" class="btn btn-primary">Update Donor</button>
+            <a asp-action="Index" class="btn btn-secondary">Back to Donors</a>
+        </div>
+    </form>
+</div>
+
+<style>
+    /* Page Title */
+    .page-title {
+        text-align: center;
+        color: floralwhite;
+        background-color: darkred;
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Content Box */
+    .content-box {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 25px;
+        max-width: 550px;
+        margin-left: auto;
+        margin-right: auto;
+        border-left: 5px solid darkred;
+    }
+
+    /* Form Styling */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        font-size: 1rem;
+        color: darkred;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+    }
+
+    /* Button Group */
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 10px 18px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 6px;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+        text-align: center;
+        display: inline-block;
+        cursor: pointer;
+        border: none;
+        box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+        background-color: darkred;
+        color: white;
+        border: 1px solid darkred;
+    }
+
+        .btn-primary:hover {
+            background-color: #8b0000;
+            transform: scale(1.05);
+        }
+
+    .btn-secondary {
+        background-color: #333;
+        color: white;
+        border: 1px solid #333;
+    }
+
+        .btn-secondary:hover {
+            background-color: black;
+            transform: scale(1.05);
+        }
+</style>

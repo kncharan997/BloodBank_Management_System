@@ -1,0 +1,194 @@
+﻿@model IEnumerable<BloodBankManagementSystem.Models.BloodDonor>
+@{
+    ViewData["Title"] = "Blood Donors";
+}
+
+<h2 class="page-title">Blood Donors</h2>
+
+<div class="content-box">
+    <a href="@Url.Action("Create")" class="btn add-btn">+ Add New Donation</a>
+
+    <table class="table custom-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Blood Type</th>
+                <th>Contact</th>
+                <th>Age</th>
+                <th>Bottles (100ml)</th>
+                <th>Registered at</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var donor in Model)
+            {
+                <tr>
+                    <td>@donor.Name</td>
+                    <td style="text-align:center">@donor.BloodType</td>
+                    <td>@donor.ContactNumber</td>
+                    <td style="text-align:center">@donor.Age</td>
+                    <td style="text-align:center">@donor.TotalDonations</td>
+                    <td style="text-align:center">
+                        @(donor.Hospital != null ? donor.Hospital.Name : donor.BloodDonationCamp?.CampName)
+                    </td>
+                    <td>
+                        <div class="action-btn-group">
+                            <a href="@Url.Action("Details", new { id = donor.BloodDonorID })" class="btn action-btn view-btn">View</a>
+                            <a href="@Url.Action("Edit", new { id = donor.BloodDonorID })" class="btn action-btn edit-btn">Edit</a>
+                            <a href="@Url.Action("Delete", new { id = donor.BloodDonorID })" class="btn action-btn delete-btn">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- ✅ CSS Styling - Matched to Blood Bank and Donation Camps -->
+<style>
+    body {
+        background: url(/images/dashboard.jpg) no-repeat center center fixed;
+        background-size: cover;
+    }
+    /* Page Title */
+    .page-title {
+        text-align: center;
+        color: white;
+        background: linear-gradient(135deg, #8B0000, #600000);
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Main Content Box */
+    .content-box {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        background: url(/images/dashboard.jpg) no-repeat center center fixed;
+        background-size: cover;
+        border: 1px solid rgba(0, 67, 67, 0.4);
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        color: rgb(0, 67, 67);
+        font-size: 14px;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.9);
+        margin-top: 25px;
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        border-left: 5px solid #8B0000;
+    }
+
+    /* Add New Donor Button */
+    .add-btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #007a7a, #004d4d);
+        color: white;
+        font-weight: 600;
+        padding: 12px 18px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        border: none;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+        .add-btn:hover {
+            background: linear-gradient(135deg, #6E0000, #500000);
+            transform: scale(1.05);
+        }
+
+    /* Custom Table */
+    .custom-table {
+        margin-top: 20px;
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+        /* Table Header */
+        .custom-table thead {
+            background: #8B0000;
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .custom-table th,
+        .custom-table td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .custom-table tbody tr {
+            border-bottom: 1px solid #ddd;
+            transition: background 0.3s ease-in-out;
+        }
+
+            .custom-table tbody tr:hover {
+                background: #f1f1f1;
+            }
+
+    /* ✅ Fix: Align Action Buttons */
+    td:last-child {
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    .action-btn-group {
+        display: flex;
+        gap: 6px;
+    }
+
+    .action-btn {
+        font-size: 0.9rem;
+        padding: 8px 14px;
+        font-weight: 600;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+        display: inline-block;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Edit Button */
+    .edit-btn {
+        background: linear-gradient(135deg, #f4a261, #e76f51);
+        color: white;
+    }
+
+        .edit-btn:hover {
+            background: linear-gradient(135deg, #e76f51, #d64933);
+            transform: scale(1.05);
+        }
+
+    /* View Button */
+    .view-btn {
+        background: linear-gradient(135deg, #1e88e5, #1565c0);
+        color: white;
+    }
+
+        .view-btn:hover {
+            background: linear-gradient(135deg, #1565c0, #0d47a1);
+            transform: scale(1.05);
+        }
+
+    /* Delete Button */
+    .delete-btn {
+        background: linear-gradient(135deg, #d32f2f, #b71c1c);
+        color: white;
+    }
+
+        .delete-btn:hover {
+            background: linear-gradient(135deg, #b71c1c, #8b0000);
+            transform: scale(1.05);
+        }
+</style>

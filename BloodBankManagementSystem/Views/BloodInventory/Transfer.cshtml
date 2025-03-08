@@ -1,0 +1,148 @@
+﻿@model BloodBankManagementSystem.Models.BloodInventory
+
+<h2 class="page-title">Transfer Blood</h2>
+
+<div class="content-box">
+    <form asp-action="Transfer" method="post">
+        <input type="hidden" asp-for="BloodInventoryID" />
+
+        <div class="form-group">
+            <label>Blood Group:</label>
+            <input type="text" asp-for="BloodGroup" class="form-control" readonly />
+        </div>
+
+        <div class="form-group">
+            <label>Available Bottles:</label>
+            <input type="number" asp-for="NumberofBottles" class="form-control" readonly />
+        </div>
+
+        <div class="form-group">
+            <label>Transfer Quantity:</label>
+            <select name="quantity" class="form-control" required>
+                <option value="">--Select Quantity--</option>
+                @for (int i = 1; i <= Model.NumberofBottles; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Select Target Blood Bank:</label>
+            <select name="targetBloodBankId" class="form-control" required>
+                <option value="">--Select Target Blood Bank--</option>
+                @foreach (var bloodBank in ViewBag.BloodBanks)
+                {
+                    if (bloodBank.BloodBankID != Model.BloodBankID)
+                    {
+                        <option value="@bloodBank.BloodBankID">@bloodBank.Name</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="btn transfer-btn">Transfer</button>
+            <a href="@Url.Action("Index")" class="btn back-btn">Back</a>
+        </div>
+    </form>
+</div>
+
+<!-- ✅ CSS Styling (Aligned with BloodLink Theme) -->
+<style>
+    /* Page Title */
+    .page-title {
+        text-align: center;
+        color: white;
+        background: #8B0000;
+        padding: 14px;
+        border-radius: 6px;
+        font-size: 1.7rem;
+        font-weight: bold;
+        letter-spacing: 0.8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Main Form Box */
+    .content-box {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        border-left: 5px solid #8B0000;
+    }
+
+    /* Form Fields */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: 600;
+        color: #8B0000;
+        font-size: 1rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .form-control:focus {
+            border-color: #8B0000;
+            box-shadow: 0 0 8px rgba(139, 0, 0, 0.2);
+        }
+
+    /* Button Group */
+    .button-group {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+    }
+
+    /* Transfer Button */
+    .transfer-btn {
+        flex-grow: 1;
+        background: #8B0000;
+        color: white;
+        font-weight: 600;
+        padding: 12px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        border: none;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+        .transfer-btn:hover {
+            background: #6e0000;
+            transform: scale(1.05);
+        }
+
+    /* Back Button */
+    .back-btn {
+        flex-grow: 1;
+        background: #333;
+        color: white;
+        font-weight: 600;
+        padding: 12px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        border: none;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+        display: inline-block;
+    }
+
+        .back-btn:hover {
+            background: #222;
+            transform: scale(1.05);
+        }
+</style>

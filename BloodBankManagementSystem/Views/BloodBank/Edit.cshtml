@@ -1,0 +1,147 @@
+﻿@model BloodBankManagementSystem.Models.BloodBank
+@{
+    ViewData["Title"] = "Edit Blood Bank";
+}
+
+<h2 class="page-title"><i class="fas fa-edit"></i> Edit Blood Bank</h2>
+
+<div class="content-box">
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="BloodBankID" />
+
+        <div class="form-group">
+            <label class="form-label">Blood Bank Name:</label>
+            <input asp-for="Name" class="form-control input-field" required />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">City:</label>
+            <select asp-for="City" class="form-control input-field" required>
+                <option value="">Select City</option>
+                <option value="Mumbai" selected="@(Model.City == "Mumbai" ? "selected" : null)">Mumbai</option>
+                <option value="Delhi" selected="@(Model.City == "Delhi" ? "selected" : null)">Delhi</option>
+                <option value="Bangalore" selected="@(Model.City == "Bangalore" ? "selected" : null)">Bangalore</option>
+                <option value="Hyderabad" selected="@(Model.City == "Hyderabad" ? "selected" : null)">Hyderabad</option>
+                <option value="Chennai" selected="@(Model.City == "Chennai" ? "selected" : null)">Chennai</option>
+                <option value="Kolkata" selected="@(Model.City == "Kolkata" ? "selected" : null)">Kolkata</option>
+                <option value="Pune" selected="@(Model.City == "Pune" ? "selected" : null)">Pune</option>
+                <option value="Ahmedabad" selected="@(Model.City == "Ahmedabad" ? "selected" : null)">Ahmedabad</option>
+                <option value="Jaipur" selected="@(Model.City == "Jaipur" ? "selected" : null)">Jaipur</option>
+                <option value="Surat" selected="@(Model.City == "Surat" ? "selected" : null)">Surat</option>
+            </select>
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Contact:</label>
+            <input asp-for="Contact" class="form-control input-field" required />
+            <span asp-validation-for="Contact" class="text-danger"></span>
+        </div>
+
+        <div class="btn-group">
+            <button type="submit" class="btn save-btn"><i class="fas fa-save"></i> Update</button>
+            <a href="@Url.Action("Index", "BloodBank")" class="btn cancel-btn"><i class="fas fa-times"></i> Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<!-- 🔹 CSS Styling -->
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    .page-title {
+        text-align: center;
+        background: rgb(0, 67, 67);
+        color: white;
+        padding: 16px;
+        border-radius: 8px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .content-box {
+        background-color: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: rgb(0, 67, 67);
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .input-field {
+        border: 2px solid #ddd;
+        padding: 12px;
+        border-radius: 6px;
+        width: 100%;
+        font-size: 1rem;
+        transition: 0.3s;
+    }
+
+        .input-field:focus {
+            border-color: rgb(0, 67, 67);
+            box-shadow: 0 0 6px rgba(0, 67, 67, 0.3);
+        }
+
+    .btn-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+
+    .btn {
+        padding: 12px 18px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: 0.3s;
+        border: none;
+        cursor: pointer;
+    }
+
+    .save-btn {
+        background: rgb(0, 67, 67);
+        color: white;
+    }
+
+        .save-btn:hover {
+            background: rgb(0, 55, 55);
+        }
+
+    .cancel-btn {
+        background: #D32F2F;
+        color: white;
+    }
+
+        .cancel-btn:hover {
+            background: #B71C1C;
+        }
+</style>

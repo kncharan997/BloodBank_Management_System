@@ -1,0 +1,221 @@
+﻿@model BloodBankManagementSystem.Models.BloodDonationCamp
+
+<h2 class="page-title">Arrange Blood Donation Camp</h2>
+
+<div class="content-box">
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="CampName">Camp Name</label>
+            <input asp-for="CampName" class="form-control" required />
+            <span asp-validation-for="CampName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Address">Address</label>
+            <input asp-for="Address" class="form-control" required />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="City">City</label>
+            <select asp-for="City" class="form-control" required>
+                <option value="">Select City</option>
+                @foreach (var city in new[] { "Mumbai", "Delhi", "Bangalore", "Hyderabad", "Chennai", "Kolkata", "Pune", "Ahmedabad", "Jaipur", "Surat" })
+                {
+                    <option value="@city">@city</option>
+                }
+            </select>
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="BloodBankID">Blood Bank</label>
+            <select asp-for="BloodBankID" class="form-control" required>
+                <option value="">-- Select Blood Bank --</option>
+                @foreach (var bloodBank in ViewBag.BloodBanks)
+                {
+                    <option value="@bloodBank.BloodBankID">@bloodBank.Name</option>
+                }
+            </select>
+            <span asp-validation-for="BloodBankID" class="text-danger"></span>
+        </div>
+
+        <!-- Start Date and End Date -->
+        <div class="form-group date-group">
+            <div>
+                <label asp-for="CampStartDate">Start Date</label>
+                <input type="date" id="campStartDate" asp-for="CampStartDate" class="form-control" required />
+                <span asp-validation-for="CampStartDate" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label asp-for="CampEndDate">End Date</label>
+                <input type="date" id="campEndDate" asp-for="CampEndDate" class="form-control" required />
+                <span asp-validation-for="CampEndDate" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="btn-group">
+            <button type="submit" class="btn btn-submit">
+                <i class="fas fa-check-circle"></i> Arrange Camp
+            </button>
+            <a href="@Url.Action("Index")" class="btn btn-cancel">
+                <i class="fas fa-times-circle"></i> Cancel
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const startDateInput = document.getElementById("campStartDate");
+            const endDateInput = document.getElementById("campEndDate");
+
+            startDateInput.addEventListener("change", function () {
+                let startDate = new Date(this.value);
+                let today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                if (startDate < today) {
+                    alert("Start Date must be today or a future date.");
+                    this.value = '';
+                }
+            });
+
+            endDateInput.addEventListener("change", function () {
+                let startDate = new Date(startDateInput.value);
+                let endDate = new Date(this.value);
+
+                if (!startDateInput.value) {
+                    alert("Please select the Start Date first.");
+                    this.value = '';
+                    return;
+                }
+
+                if (endDate < startDate) {
+                    alert("End Date must be after Start Date.");
+                    this.value = '';
+                }
+            });
+        });
+    </script>
+}
+
+<style>
+    /* Page Title */
+    .page-title {
+        text-align: center;
+        color: white;
+        background-color: darkred;
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Content Box */
+    .content-box {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        max-width: 550px;
+        margin-left: auto;
+        margin-right: auto;
+        border-left: 5px solid darkred;
+    }
+
+    /* Form Group */
+    .form-group {
+        margin-bottom: 12px;
+    }
+
+        .form-group label {
+            font-weight: 600;
+            color: #444;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease-in-out;
+        }
+
+            .form-group .form-control:focus {
+                border-color: darkred;
+                box-shadow: 0 0 5px rgba(139, 0, 0, 0.3);
+                outline: none;
+            }
+
+    /* Date Group */
+    .date-group {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+        .date-group div {
+            flex: 1;
+        }
+
+    /* Button Group */
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 12px 18px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 6px;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        border: none;
+        box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-submit {
+        background-color: darkred;
+        color: white;
+    }
+
+        .btn-submit:hover {
+            background-color: #a40000;
+            transform: scale(1.05);
+        }
+
+    .btn-cancel {
+        background-color: #6c757d;
+        color: white;
+    }
+
+        .btn-cancel:hover {
+            background-color: #5a6268;
+            transform: scale(1.05);
+        }
+
+    /* Icons in Buttons */
+    .btn i {
+        font-size: 1.2rem;
+    }
+</style>

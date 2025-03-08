@@ -1,0 +1,153 @@
+﻿@{
+    ViewData["Title"] = "BloodLink";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="content-box">
+                <h3 class="section-title"><i class="fas fa-tint"></i> BloodLink Dashboard</h3>
+                <p class="lead">Manage blood banks, donors, and camps seamlessly.</p>
+
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <i class="fas fa-user info-icon"></i>
+                            <h5>Total Donations</h5>
+                            <h4 id="donorCount">0</h4>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card blood-units-card">
+                            <i class="fas fa-archive info-icon"></i>
+                            <h5>Blood Units</h5>
+                            <h4 id="bloodUnits">0</h4>
+                        </div>
+
+                        <!-- Blood Group-wise Inventory (Initially Hidden) -->
+                        <div id="bloodInventory" style="display: none;">
+                            <h5>Blood Group-wise Inventory</h5>
+                            <ul id="bloodGroupList"></ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <i class="fas fa-hand-holding-medical info-icon"></i>
+                            <h5>Donation Camps</h5>
+                            <h4 id="campCount">0</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Fetch Dashboard Stats
+        fetch("/Dashboard/GetStats")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("donorCount").innerText = data.totalDonors;
+                document.getElementById("bloodUnits").innerText = data.bloodUnits;
+                document.getElementById("campCount").innerText = data.donationCamps;
+            })
+            .catch(error => console.error("Error fetching dashboard stats:", error));
+
+        // Handle Blood Units Click
+        document.querySelector(".blood-units-card").addEventListener("click", function () {
+            let inventoryContainer = document.getElementById("bloodInventory");
+            let bloodGroupList = document.getElementById("bloodGroupList");
+
+            // Toggle display
+            if (inventoryContainer.style.display === "none" || inventoryContainer.style.display === "") {
+                fetch("/Dashboard/GetBloodInventory")
+                    .then(response => response.json())
+                    .then(data => {
+                        bloodGroupList.innerHTML = ""; // Clear previous data
+                        data.forEach(item => {
+                            if (item.numberOfBottles !== null) {
+                                let listItem = document.createElement("li");
+                                listItem.textContent = `${item.bloodGroup}: ${item.numberOfBottles} Bottles`;
+                                bloodGroupList.appendChild(listItem);
+                            }
+                        });
+                        inventoryContainer.style.display = "block"; // Expand container
+                    })
+                    .catch(error => console.error("Error fetching blood inventory:", error));
+            } else {
+                inventoryContainer.style.display = "none"; // Collapse container
+            }
+        });
+    });
+</script>
+
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Poppins', sans-serif;
+        background: url(/images/dashboard.jpg) no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .content-box {
+        border: 1px solid rgba(0, 67, 67, 0.4);
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(5px);
+        color: rgb(0, 67, 67);
+        font-size: 14px;
+        transition: all 0.3s ease-in-out;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        color: rgb(0, 67, 67);
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .lead {
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .info-card {
+        background: rgba(255, 255, 255, 0.6);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        transition: transform 0.2s ease-in-out;
+        cursor: pointer;
+    }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .info-icon {
+        font-size: 3rem;
+        color: rgb(194, 0, 0);
+        margin-bottom: 10px;
+    }
+
+    h5 {
+        font-size: 1.2rem;
+        color: rgb(0, 67, 67);
+        font-weight: 600;
+    }
+
+    h4 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: rgb(194, 0, 0);
+    }
+</style>

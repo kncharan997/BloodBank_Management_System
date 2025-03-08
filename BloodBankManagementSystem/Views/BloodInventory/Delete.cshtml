@@ -1,0 +1,96 @@
+﻿@model BloodBankManagementSystem.Models.BloodInventory
+
+<h2 class="page-title">Delete Blood Inventory</h2>
+
+<div class="content-box">
+    <p class="confirmation-text">Are you sure you want to delete this blood from the inventory?</p>
+
+    <form method="post">
+        <div class="button-group">
+            <button type="submit" class="btn delete-btn">Yes, Delete</button>
+            <a href="@Url.Action("Index")" class="btn cancel-btn">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<!-- ✅ CSS Styling (Aligned with BloodLink Theme) -->
+<style>
+    /* Page Title */
+    .page-title {
+        text-align: center;
+        color: white;
+        background: #8B0000;
+        padding: 14px;
+        border-radius: 6px;
+        font-size: 1.7rem;
+        font-weight: bold;
+        letter-spacing: 0.8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Main Box */
+    .content-box {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        border-left: 5px solid #8B0000;
+        text-align: center;
+    }
+
+    /* Confirmation Text */
+    .confirmation-text {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #8B0000;
+        margin-bottom: 20px;
+    }
+
+    /* Button Group */
+    .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    /* Delete Button */
+    .delete-btn {
+        background: #D32F2F;
+        color: white;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        border: none;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+        .delete-btn:hover {
+            background: #B71C1C;
+            transform: scale(1.05);
+        }
+
+    /* Cancel Button (Replaced Green) */
+    .cancel-btn {
+        background: #333;
+        color: white;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        border: none;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .cancel-btn:hover {
+            background: #222;
+            transform: scale(1.05);
+        }
+</style>

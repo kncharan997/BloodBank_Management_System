@@ -1,0 +1,94 @@
+﻿@model IEnumerable<BloodBankManagementSystem.Models.BloodDonor>
+
+<h2 class="page-title">Search Results</h2>
+
+@if (!Model.Any())
+{
+    <p class="no-results">No results found.</p>
+}
+else
+{
+    <h2 class="page-title">Donor Details</h2>
+
+    @foreach (var donor in Model)
+    {
+        <div class="donor-card">
+            <table class="table">
+                <tr>
+                    <th>Blood Donor ID</th>
+                    <td>@donor.BloodDonorID</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>@donor.Name</td>
+                </tr>
+                <tr>
+                    <th>Blood Group</th>
+                    <td>@donor.BloodType</td>
+                </tr>
+                <tr>
+                    <th>Contact Number</th>
+                    <td>@donor.ContactNumber</td>
+                </tr>
+            </table>
+        </div>
+    }
+}
+
+<style>
+    /* Page Title */
+    .page-title {
+        text-align: center;
+        color: white;
+        background: linear-gradient(135deg, #007a7a, #004d4d);
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+    }
+
+    /* No Results Message */
+    .no-results {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #555;
+        margin-top: 20px;
+    }
+
+    /* Donor Card */
+    .donor-card {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 15px auto;
+        max-width: 500px;
+        border-left: 5px solid darkred;
+    }
+
+    /* Table */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .table th {
+            background-color: #f8f9fa;
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table tr:last-child td {
+            border-bottom: none;
+        }
+</style>

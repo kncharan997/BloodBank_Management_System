@@ -1,0 +1,156 @@
+﻿@model BloodBankManagementSystem.Models.BloodInventory
+
+@{
+    ViewBag.Title = "Create Blood Inventory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts {
+    <script src="~/js/dateValidation.js"></script>
+}
+
+<h2 class="page-title">Create Blood Inventory</h2>
+
+<div class="content-box">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4 class="section-title">Blood Inventory</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BloodGroup, htmlAttributes: new { @class = "control-label" })
+                <select asp-for="BloodGroup" class="form-control" required>
+                    <option value="">Select Blood Group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.BloodGroup, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NumberofBottles, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.NumberofBottles, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NumberofBottles, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ExpiryDate, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BloodBankID, "Blood Bank", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownList("BloodBankID", new SelectList(ViewBag.BloodBanks, "BloodBankID", "Name"), "Select Blood Bank", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BloodBankID, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="button-group">
+                <input type="submit" value="Create" class="btn primary-btn" />
+                <a href="@Url.Action("Index")" class="btn cancel-btn">Cancel</a>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- ✅ CSS Styling (Following BloodLink Theme) -->
+<style>
+    /* Page Title */
+    .page-title {
+        text-align: center;
+        color: white;
+        background: #8B0000;
+        padding: 14px;
+        border-radius: 6px;
+        font-size: 1.7rem;
+        font-weight: bold;
+        letter-spacing: 0.8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Main Box */
+    .content-box {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        border-left: 5px solid #8B0000;
+    }
+
+    /* Section Title */
+    .section-title {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #8B0000;
+    }
+
+    /* Form Controls */
+    .form-control {
+        border: 2px solid #8B0000;
+        border-radius: 5px;
+        padding: 8px;
+        font-size: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    /* Button Group */
+    .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    /* Primary Button */
+    .primary-btn {
+        background: #8B0000;
+        color: white;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        border: none;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+        .primary-btn:hover {
+            background: #6e0000;
+            transform: scale(1.05);
+        }
+
+    /* Cancel Button (No Green) */
+    .cancel-btn {
+        background: #333;
+        color: white;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        border: none;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .cancel-btn:hover {
+            background: #222;
+            transform: scale(1.05);
+        }
+</style>
