@@ -41,7 +41,7 @@ The project follows the **Model-View-Controller (MVC)** architectural pattern:
 
 ---
 
-## Screenshot
+## Screenshots
 
 <img width="1920" height="972" alt="Screenshot (5)" src="https://github.com/user-attachments/assets/73fd8424-99ce-4d87-8d30-05a1d94cec11" />
 
@@ -52,9 +52,6 @@ The project follows the **Model-View-Controller (MVC)** architectural pattern:
 <img width="1920" height="979" alt="Screenshot (7)" src="https://github.com/user-attachments/assets/9c63ffca-50bc-4608-8f18-6e750ea16295" />
 
 <img width="1920" height="979" alt="Screenshot (6)" src="https://github.com/user-attachments/assets/38299e5f-3043-465a-824f-3b48a075f090" />
-
-
-## Getting Started
 
 ### Prerequisites
 
