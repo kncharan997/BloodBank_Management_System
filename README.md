@@ -43,7 +43,12 @@ The project follows the **Model-View-Controller (MVC)** architectural pattern:
 
 ## Screenshot
 
-![BloodBank Management System Screenshot](assets/screenshot.png)
+<img width="1920" height="1080" alt="Screenshot (5)" src="https://github.com/user-attachments/assets/fe2b79bf-cc1a-4a8d-b4e0-405dc1c6c204" />
+<img width="1920" height="1080" alt="Screenshot (6)" src="https://github.com/user-attachments/assets/f89f9c53-6171-4ad0-bdc6-6cb1b7712109" />
+<img width="1920" height="1080" alt="Screenshot (7)" src="https://github.com/user-attachments/assets/a2358821-2e40-4566-9a06-cf0ad31d24e9" />
+<img width="1920" height="1080" alt="Screenshot (8)" src="https://github.com/user-attachments/assets/35b83821-39a1-424e-a031-7304f5ec1a8b" />
+<img width="1920" height="1080" alt="Screenshot (9)" src="https://github.com/user-attachments/assets/41e2c048-9f45-48b6-9f30-efb3edd31496" />
+
 
 ## Getting Started
 
